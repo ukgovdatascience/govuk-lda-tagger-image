@@ -18,7 +18,7 @@ RUN git clone https://github.com/ukgovdatascience/govuk-lda-tagger.git
 WORKDIR /govuk-lda-tagger
 
 RUN git pull --tags \
-    && git checkout v0.0.0.9000
+    && git checkout v0.0.0.9001
 
 RUN apt-get install python-pip -y
 RUN pip install -r requirements.txt
