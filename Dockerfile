@@ -19,11 +19,11 @@ WORKDIR /govuk-lda-tagger-lite
 
 RUN git checkout v0.0.0.9004
 
-RUN apt-get install -y python-pip \
-    && python2.7 \
-    && python2.7-dev \
-    && apt-get autoremove \
-    && apt-get clean
+RUN apt-get install -y python-pip
+RUN apt-get install -y python2.7
+RUN apt-get install -y python2.7-dev
+RUN apt-get autoremove
+RUN apt-get clean
 #RUN pip install -r requirements.txt
 
 # Make train_lda executable
