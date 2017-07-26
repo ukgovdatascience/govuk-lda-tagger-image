@@ -12,12 +12,13 @@ RUN apt-get update -y \
     && apt-get install -y git 
 
 RUN git clone https://github.com/ukgovdatascience/govuk-lda-tagger.git 
-RUN git pull --tags \
-    && git checkout v0.0.0.9000
 
 # Set working directory
 
 WORKDIR /govuk-lda-tagger-image
+
+RUN git pull --tags \
+    && git checkout v0.0.0.9000
 
 # Make train_lda executable
 
