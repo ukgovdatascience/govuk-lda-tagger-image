@@ -10,7 +10,7 @@ LABEL description="GOVUK LDA tagger image for parallel execution of LDA tagging"
 RUN apt-get update -y \
     && apt-get upgrade -y \
     && apt-get install -y git \
-    && apt-get install python-dev
+    && apt-get install python-dev -y
 
 RUN git clone https://github.com/ukgovdatascience/govuk-lda-tagger-lite.git 
 
