@@ -2,29 +2,41 @@ FROM ubuntu:14.04
 
 MAINTAINER Matthew Upson
 LABEL date="2017-07-26"
-LABEL version="0.0.0.9000"
+LABEL version="0.0.0.9005"
 LABEL description="GOVUK LDA tagger image for parallel execution of LDA tagging"
 
 # Update server and install git 
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get install -y git 
+    && apt-get install -y git
 
-RUN git clone https://github.com/ukgovdatascience/govuk-lda-tagger.git \
-    && git checkout v0.0.0.9000
+RUN git clone https://github.com/ukgovdatascience/govuk-lda-tagger-lite.git 
 
 # Set working directory
 
-WORKDIR /govuk-lda-tagger-image
+WORKDIR /govuk-lda-tagger-lite
+
+RUN apt-get install -y python-pip
+RUN apt-get install -y python2.7
+RUN apt-get install -y python2.7-dev
+RUN apt-get install -y python-numpy
+RUN apt-get install -y python-scipy
+RUN apt-get autoremove
+RUN apt-get clean
+RUN pip install -r requirements.txt
 
 # Make train_lda executable
 
-RUN chmod +x train_lda.py
+COPY ./environment_urltext_100.csv /govuk-lda-tagger-lite/
+COPY ./run.sh /govuk-lda-tagger-lite/
 
-ENTRYPOINT ["train_lda.py"]
+# RUN chmod +x train_lda.py
+
+#ENTRYPOINT ["./train_lda.py"]
 
 # List Arguments for compilation (might be better as a script)
 
 #CMD ["import", "--experiment", "early_years", "input/early-years.csv"]
+
 
