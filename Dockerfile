@@ -9,8 +9,7 @@ LABEL description="GOVUK LDA tagger image for parallel execution of LDA tagging"
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get install -y git \
-    && apt-get install python-dev -y
+    && apt-get install -y git
 
 RUN git clone https://github.com/ukgovdatascience/govuk-lda-tagger-lite.git 
 
@@ -20,7 +19,11 @@ WORKDIR /govuk-lda-tagger-lite
 
 RUN git checkout v0.0.0.9004
 
-RUN apt-get install python-pip -y
+RUN apt-get install -y python-pip \
+    && python2.7 \
+    && python2.7-dev \
+    && apt-get autoremove \
+    && apt-get clean
 #RUN pip install -r requirements.txt
 
 # Make train_lda executable
@@ -34,4 +37,5 @@ COPY ./environment_urltext_100.csv /govuk-lda-tagger-lite/
 # List Arguments for compilation (might be better as a script)
 
 #CMD ["import", "--experiment", "early_years", "input/early-years.csv"]
+
 
