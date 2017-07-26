@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 
 MAINTAINER Matthew Upson
 LABEL date="2017-07-26"
-LABEL version="0.0.0.9000"
+LABEL version="0.0.0.9001"
 LABEL description="GOVUK LDA tagger image for parallel execution of LDA tagging"
 
 # Update server and install git 
@@ -20,11 +20,16 @@ WORKDIR /govuk-lda-tagger
 RUN git pull --tags \
     && git checkout v0.0.0.9000
 
+RUN apt-get install python-pip -y
+RUN pip install -r requirements.txt
+
 # Make train_lda executable
 
-RUN chmod +x train_lda.py
+COPY ./environment_urltext_100.csv /govuk-lda-tagger/
 
-ENTRYPOINT ["train_lda.py"]
+# RUN chmod +x train_lda.py
+
+#ENTRYPOINT ["./train_lda.py"]
 
 # List Arguments for compilation (might be better as a script)
 
