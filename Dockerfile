@@ -11,11 +11,14 @@ RUN apt-get update -y \
     && apt-get upgrade -y \
     && apt-get install -y git
 
-RUN git clone https://github.com/ukgovdatascience/govuk-lda-tagger-lite.git 
+COPY ./govuk-lda-tagger-lite govuk-lda-tagger-lite
+#RUN git clone https://github.com/ukgovdatascience/govuk-lda-tagger-lite.git 
 
 # Set working directory
 
 WORKDIR /govuk-lda-tagger-lite
+
+# Split these apart for now to speed up development
 
 RUN apt-get install -y python-pip
 RUN apt-get install -y python2.7
@@ -24,6 +27,13 @@ RUN apt-get install -y python-numpy
 RUN apt-get install -y python-scipy
 RUN apt-get autoremove
 RUN apt-get clean
+
+# Allow the first attempt at installing requirements to fail
+
+RUN pip install -r requirements.txt || true
+
+# Then try again
+
 RUN pip install -r requirements.txt
 
 # Make train_lda executable
