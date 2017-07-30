@@ -2,7 +2,7 @@ FROM python:2.7
 
 MAINTAINER Matthew Upson
 LABEL date="2017-07-30"
-LABEL version="0.0.0.9011"
+LABEL version="0.0.0.9012"
 LABEL description="GOVUK LDA tagger image for parallel execution of LDA tagging"
 
 # Update server and install git 
@@ -17,15 +17,16 @@ COPY ./govuk-lda-tagger-lite govuk-lda-tagger-lite
 
 WORKDIR /govuk-lda-tagger-lite
 
+# Install python requirements
+
 RUN pip install -r requirements.txt
 
-## Then try again
+# Copy in input data 
 
-## Make train_lda executable
+COPY ./bigrams.csv /govuk-lda-tager-lite/input/
+COPY ./environment_urltext_100.csv /govuk-lda-tagger-lite/input/
 
-COPY ./environment_urltext_100.csv /govuk-lda-tagger-lite/
-
-## RUN chmod +x train_lda.py
+RUN ./run.sh
 #
 ##ENTRYPOINT ["./train_lda.py"]
 #
