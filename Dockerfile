@@ -2,7 +2,7 @@ FROM python:2.7
 
 MAINTAINER Matthew Upson
 LABEL date="2017-07-30"
-LABEL version="0.0.0.9012"
+LABEL version="0.0.0.9021"
 LABEL description="GOVUK LDA tagger image for parallel execution of LDA tagging"
 
 # Update server and install git 
@@ -27,9 +27,9 @@ RUN python -m nltk.downloader stopwords
 
 # Test run the LDA
 
-RUN ./run.sh
+#RUN ./run.sh
 
-# ENTRYPOINT ["./train_lda.py"]
+# ENTRYPOINT ["python"]
 
 # List Arguments for compilation (might be better as a script)
 

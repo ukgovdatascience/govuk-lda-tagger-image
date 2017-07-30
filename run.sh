@@ -5,6 +5,6 @@ docker run -i --rm -v ${PWD}/output:/mnt/output \
     --output-topics /mnt/output/topics.csv \
     --output-tags /mnt/output/tags.csv \
     --vis-filename /mnt/output/vis.html \
-    --numtopics 3 \
+    --numtopics 7 \
     --passes 1 \
-    import input/environment_urltext_100.csv
+    import input/url_text.csv
