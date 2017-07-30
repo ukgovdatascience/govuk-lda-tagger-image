@@ -21,11 +21,6 @@ WORKDIR /govuk-lda-tagger-lite
 
 RUN pip install -r requirements.txt
 
-# Copy in input data 
-
-COPY ./bigrams.csv /govuk-lda-tager-lite/input/
-COPY ./environment_urltext_100.csv /govuk-lda-tagger-lite/input/
-
 # Install nltk sopwords
 
 RUN python -m nltk.downloader stopwords
