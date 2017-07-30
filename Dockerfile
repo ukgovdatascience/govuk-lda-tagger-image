@@ -26,12 +26,17 @@ RUN pip install -r requirements.txt
 COPY ./bigrams.csv /govuk-lda-tager-lite/input/
 COPY ./environment_urltext_100.csv /govuk-lda-tagger-lite/input/
 
+# Install nltk sopwords
+
+RUN python -m nltk.downloader stopwords
+
+# Test run the LDA
+
 RUN ./run.sh
-#
-##ENTRYPOINT ["./train_lda.py"]
-#
-## List Arguments for compilation (might be better as a script)
-#
-##CMD ["import", "--experiment", "early_years", "input/early-years.csv"]
-#
-#
+
+# ENTRYPOINT ["./train_lda.py"]
+
+# List Arguments for compilation (might be better as a script)
+
+# CMD ["import", "--experiment", "early_years", "input/early-years.csv"]
+
