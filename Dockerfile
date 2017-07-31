@@ -2,7 +2,7 @@ FROM python:2.7
 
 MAINTAINER Matthew Upson
 LABEL date="2017-07-30"
-LABEL version="0.0.0.9021"
+LABEL version="0.0.0.9022"
 LABEL description="GOVUK LDA tagger image for parallel execution of LDA tagging"
 
 # Update server and install git 
