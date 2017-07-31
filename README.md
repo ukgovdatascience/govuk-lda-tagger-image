@@ -9,7 +9,11 @@ Tag GOV.UK content with topics generated using Latent Dirichlet Allocation ([gov
 The easiest way to get started with this image is to run the following command from a terminal (ensuring that docker is installed):
 
 ```
+
+#!/bin/bash
+
 docker run -i --rm -v ${PWD}/output:/mnt/output \
+    -v ${PWD}/experiments:/mnt/experiments \
     ukgovdatascience/govuk-lda-tagger-image:latest python train_lda.py \
     --output-topics /mnt/output/topics.csv \
     --output-tags /mnt/output/tags.csv \
@@ -22,7 +26,24 @@ docker run -i --rm -v ${PWD}/output:/mnt/output \
 
 This will download the pre-built container from [DockerHub](https://hub.docker.com/r/ukgovdatascience/govuk-lda-tagger-image/), and run and test based on data included in the [govuk-lda-tagger-lite](https://github.com/ukgovdatascience/govuk-lda-tagger-lite) repository.
 
-Output files will be produced in a new directory called `output/`, so ensure that you run the command from a working directory.
+Output files and experiment data will be produced in new directories called `./output/` and `./experiments` respectively, so ensure that you run the command from a working directory.
+
+To run the container on real data, a mount point can be set up to access local files, for example:
+
+```
+docker run -i --rm -v ${PWD}/output:/mnt/output \
+    -v ${PWD}/experiments:/mnt/experiments \
+    -v ${PWD}/input:/mnt/input \
+    ukgovdatascience/govuk-lda-tagger-image:latest python train_lda.py \
+    --output-topics /mnt/output/topics.csv \
+    --output-tags /mnt/output/tags.csv \
+    --vis-filename /mnt/output/vis.html \
+    --numtopics 7 \
+    --passes 1 \
+    import /mnt/input/url_text.csv
+```
+
+New data files can then be added to the local `./input` folder, and can be found in the container at `/mnt/input`.
 
 ### Gotchas
 
