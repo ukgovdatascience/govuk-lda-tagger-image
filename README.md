@@ -45,27 +45,6 @@ docker run -i --rm -v ${PWD}/output:/mnt/output \
 
 New data files can then be added to the local `./input` folder, and can be found in the container at `/mnt/input`.
 
-### Switching between batch and online training
-
-For a discussion of this see: [http://radimrehurek.com/gensim/wiki.html#latent-dirichlet-allocation](http://radimrehurek.com/gensim/wiki.html#latent-dirichlet-allocation).
-
-
-```
-docker run -i --rm -v ${PWD}/output:/mnt/output \
-    -v ${PWD}/experiments:/mnt/experiments \
-    -v ${PWD}/input:/mnt/input \
-    ukgovdatascience/govuk-lda-tagger-image:latest python train_lda.py \
-    --output-topics /mnt/output/topics.csv \
-    --output-tags /mnt/output/tags.csv \
-    --vis-filename /mnt/output/vis.html \
-    --numtopics 7 \
-    --chunksize 10000 \
-    --update_every 1 \
-    --passes 1 \
-
-    import /mnt/input/url_text.csv
-```
-
 ### Gotchas
 
 Note that the [govuk-lda-tagger-lite](https://github.com/ukgovdatascience/govuk-lda-tagger-lite) repository is a submodule of this repository. This means that it is a git repository within a git repository. When pulling this repo for the first time, you must run the commands:
