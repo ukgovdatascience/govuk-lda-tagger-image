@@ -9,9 +9,4 @@ docker run -i --rm -v ${PWD}/output:/mnt/output \
     --vis-filename /mnt/output/vis.html \
     --numtopics 7 \
     --passes 1 \
-    # See http://radimrehurek.com/gensim/wiki.html#latent-dirichlet-allocation
-    # for information on switching between batch and online mode using
-    # chunksize and update_every.
-    --chunksize 1000 \
-    --update_every 1 \
     import /mnt/input/url_text.csv
