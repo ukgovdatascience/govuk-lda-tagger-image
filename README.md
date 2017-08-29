@@ -45,6 +45,10 @@ docker run -i --rm -v ${PWD}/output:/mnt/output \
 
 New data files can then be added to the local `./input` folder, and can be found in the container at `/mnt/input`.
 
+### Testing
+
+Tests that the container will produces the expected output can be run from the project root with the command `pytest`.
+
 ### Gotchas
 
 Note that the [govuk-lda-tagger-lite](https://github.com/ukgovdatascience/govuk-lda-tagger-lite) repository is a submodule of this repository. This means that it is a git repository within a git repository. When pulling this repo for the first time, you must run the commands:

@@ -1,1 +1,3 @@
-{}
+{
+  "test_docker_image.py::TestDockerOutput::()::test_files_are_produced": true
+}
