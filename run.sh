@@ -9,4 +9,4 @@ docker run -i --rm -v ${PWD}/output:/mnt/output \
     --vis-filename /mnt/output/vis.html \
     --numtopics 7 \
     --passes 1 \
-    import /mnt/input/url_text.csv
+    import /mnt/tests/input/test_url_text.csv
