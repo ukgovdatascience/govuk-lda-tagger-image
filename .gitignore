@@ -2,3 +2,5 @@ output
 experiments
 input
 .env
+*__pycache__
+.cache
