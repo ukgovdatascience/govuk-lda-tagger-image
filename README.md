@@ -74,7 +74,7 @@ Note that the `:latest` part can be substituted for another tag (e.g. a version 
 ## Running on a databox
 
 1. Run the insructions in the [https://github.com/ukgovdatascience/databox](https://github.com/ukgovdatascience/databox) folder to set up your databox with docker.
-2. Run `git clone https://www.github.com/ukgovdatascience/govuk-lda-tagger-image %% cd govuk-lda-tagger-image` to get a copy of the input data and to navigate to that folder.
+2. Run `git clone https://www.github.com/ukgovdatascience/govuk-lda-tagger-image %%%% cd govuk-lda-tagger-image` to get a copy of the input data and to navigate to that folder.
 3. Run `./run.sh` to run a test script.
 4. Note that you can also build the image locally (rather than pulling it docker hub) with the following commands:
     * Initialise and update the submodule from the govuk-lda-tagger-image directory: `git submodule init && git submodule update`.
