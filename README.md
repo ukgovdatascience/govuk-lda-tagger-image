@@ -80,6 +80,36 @@ Note that the `:latest` part can be substituted for another tag (e.g. a version 
     * Initialise and update the submodule from the govuk-lda-tagger-image directory: `git submodule init && git submodule update`.
     * Build the image locally from instructions in the Dockerfile: `docker build -t ukgovdatascience/govuk-lda-tagger-image:latest .`
 
+### Transfering data between your local machine and the databox
+
+To transfer data to and from your local machine you can use [scp](https://en.wikipedia.org/wiki/Secure_copy).
+SCP uses the same authentication mechanism as SSH, so if you have followed the above steps, it should be very easy!
+
+#### Uploading data to the databox
+
+From the local machine (replacing 0.0.0.0 with the actual IP returned by `terafform apply...`):
+
+```
+# Create a folder in which to store input data
+
+ssh ubuntu@0.0.0.0 'mkdir -p /home/ubuntu/govuk-lda-tagger-image/input'
+
+# Secure copy input_data.csv from local to the newly created input folder
+
+scp input_data.csv ubuntu@0.0.0.0:/home/ubuntu/govuk-lda-tagger-image/input/input_data.csv
+```
+
+#### Downloading data to your local machine
+
+From the local machine (again replacing 0.0.0.0 with the actual IP of the remote machine):
+
+```
+
+# Specifying `-r` allows a recursive copy of the whole folder
+
+scp -r ubuntu@0.0.0.0:/home/ubuntu/govuk-lda-tagger-image/output ./
+```
+
 ### Run the tests
 
 If you want to verify that the docker contaien ris working as expected, you can run the tests which are written in python with pytest. Note that this contains a `docker run` command, so will pull the image from docker hub if it is not available locally.
